@@ -22,5 +22,7 @@
 # JOIN
 1. Write a query that `INNER JOIN`s the `vendor` table to the `vendor_booth_assignments` table on the `vendor_id` field they both have in common, and sorts the result by `vendor_name`, then `market_date`.
 
-- ![SQL homework-2 please find it below] ([text](../../../Desktop/dsi/SQL/homework-2.sql))
+- ![SQL homework-2 please find it below] 
+
+
 
