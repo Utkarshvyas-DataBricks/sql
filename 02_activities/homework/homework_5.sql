@@ -22,7 +22,16 @@ Name the timestamp column `snapshot_timestamp`. */
 /*2. Using `INSERT`, add a new row to the product_units table (with an updated timestamp). 
 This can be any product you desire (e.g. add another record for Apple Pie). */
 
-
+CREATE TABLE product_units AS
+SELECT *,
+    CURRENT_TIMESTAMP AS snapshot_timestamp
+FROM 
+    product
+WHERE 
+    product_qty_type = 'unit';
+	INSERT INTO product_units (product_id, product_name, product_size, product_qty_type, snapshot_timestamp)
+VALUES 
+(7,'Apple Pie', 'Large', 'unit', CURRENT_TIMESTAMP);
 
 -- DELETE
 /* 1. Delete the older record for the whatever product you added. 
@@ -30,6 +39,13 @@ This can be any product you desire (e.g. add another record for Apple Pie). */
 HINT: If you don't specify a WHERE clause, you are going to have a bad time.*/
 
 
+DELETE FROM product_units
+WHERE product_id = 7
+  AND snapshot_timestamp < (
+      SELECT MAX(snapshot_timestamp) 
+      FROM product_units 
+      WHERE product_id = 7
+  );
 
 -- UPDATE
 /* 1.We want to add the current_quantity to the product_units table. 
@@ -49,3 +65,14 @@ Finally, make sure you have a WHERE statement to update the right row,
 When you have all of these components, you can run the update statement. */
 
 
+UPDATE product_units
+SET current_quantity = (
+    SELECT 
+        COALESCE(p.product_qty_type,0)
+    FROM 
+        product p
+    WHERE 
+        p.product_id = product_units.product_id  
+)
+WHERE 
+    product_id IN (SELECT DISTINCT product_id FROM product);
