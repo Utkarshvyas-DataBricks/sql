@@ -5,8 +5,17 @@ Create a logical model for a small bookstore. 📚
 
 At the minimum it should have employee, order, sales, customer, and book entities (tables). Determine sensible column and table design based on what you know about these concepts. Keep it simple, but work out sensible relationships to keep tables reasonably sized. Include a date table. There are several tools online you can use, I'd recommend [_Draw.io_](https://www.drawio.com/) or [_LucidChart_](https://www.lucidchart.com/pages/).
 
+
+
+
+![Here is the attached photo of all tables relationship of one-to-one, one-to-many,many-to-many](Assignment-1.jpg)
+
+
 ## Question 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
+
+
+![added table of employee shifts into ERD](Employee_shifts-1.jpg)
 
 ## Question 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2?
@@ -18,6 +27,13 @@ Bonus: Are there privacy implications to this, why or why not?
 Your answer...
 ```
 
+type 1 is overwrite changes the old address with the new one..
+
+types 2 retain changes keeps older records and can inlcudes dates as well
+
+type 2 retain changes may cause issues due to some older records with the risk of data breach or privacy concern because it stores the address and personal information being exposed, as a result sensitive data might get compromised.
+
+
 ## Question 4
 Review the AdventureWorks Schema [here](https://imgur.com/a/u0m8fX6)
 
@@ -25,6 +41,10 @@ Highlight at least two differences between it and your ERD. Would you change any
 ```
 Your answer...
 ```
+adventure works includes product photo, product subcategoty, product description tables. However, my ERD uses some simpler tables such as sales, date, book not giving a drill-through information. Moreover, both ERD as same as snowflake schema.adventure works uses multiple schemas for better understanding with more entities.
+
+
+If we have more data to handle as same as adventure works then we have to create some more tables such as country, regoins, vendor, ship method for different product types for a growing system to improve data normalization.
 
 # Criteria
 
